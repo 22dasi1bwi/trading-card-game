@@ -35,13 +35,5 @@ internal class Charmander : PokemonCard() {
         get() = listOf(scratch) // TODO implement actual abilities
 
     override fun performSpecificAbility(ability: Ability) {
-        // lets assume we're facing a Bulbasaur
-//        val totalDamageOutcomeEffective = ability.damage.calculateTotalDamageOutcome(specialization, Type.NATURE)
-//        val totalDamageOutcomeNormal = ability.damage.calculateTotalDamageOutcome(specialization, Type.ELECTRO)
-//        val totalDamageOutcomeResistant = ability.damage.calculateTotalDamageOutcome(specialization, Type.WATER)
-//
-//        println("TOTAL DAMAGE OUTCOME EFFECTIVE $totalDamageOutcomeEffective")
-//        println("TOTAL DAMAGE OUTCOME NORMAL $totalDamageOutcomeNormal")
-//        println("TOTAL DAMAGE OUTCOME RESISTANT $totalDamageOutcomeResistant")
     }
 }

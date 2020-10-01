@@ -35,6 +35,5 @@ internal class Bulbasaur : PokemonCard() {
         get() = listOf(leech)
 
     override fun performSpecificAbility(ability: Ability) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

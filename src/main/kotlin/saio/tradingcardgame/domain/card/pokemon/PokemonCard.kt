@@ -5,9 +5,9 @@ import saio.tradingcardgame.domain.card.energy.EnergyCard
 
 internal abstract class PokemonCard {
 
-    var incapacitationState = null
+    private var incapacitationState = null
 
-    val attachedEnergyCards = mutableListOf<EnergyCard>()
+    private val attachedEnergyCards = mutableListOf<EnergyCard>()
 
     abstract val totalHealth: Health
 
