@@ -5,7 +5,7 @@ import saio.tradingcardgame.domain.card.energy.EnergyCard
 
 internal abstract class PokemonCard {
 
-    var incapacitationState = Incapacitation.NONE
+    var incapacitationState = null
 
     val attachedEnergyCards = mutableListOf<EnergyCard>()
 
@@ -22,15 +22,13 @@ internal abstract class PokemonCard {
     abstract fun performSpecificAbility(ability: Ability)
 
     fun performAbility(ability: Ability) {
-        // requires also that Pokemon is not afflicted by any negative state such as CONFUSION, PARALYZE or SLEEP
-        require(!isIncapacitated()) { "Pokemon cannot attack when incapacitated. Pokemon in state: ${incapacitationState.name}." }
+        require(!isIncapacitated()) { "Pokemon cannot attack when incapacitated. Pokemon in state: ${incapacitationState}." }
 
         require(ability.canBeUsedWith(attachedEnergyCards))
         {
             "Required ability costs ${ability.cost.requiredEnergy} for ${ability.name} are not reached. " +
                     "Attached are ${attachedEnergyCards.map { it.type }}"
         }
-
         performSpecificAbility(ability)
     }
 
@@ -46,7 +44,10 @@ internal abstract class PokemonCard {
         return tokens
     }
 
-    private fun isIncapacitated() = this.incapacitationState != Incapacitation.NONE
+    private fun isIncapacitated() =
+            this.incapacitationState == isConfused() ||
+            this.incapacitationState == isParalyzed() ||
+            this.incapacitationState == isAsleep()
 
     private fun isConfused() = this.incapacitationState == Incapacitation.CONFUSION
 
@@ -71,5 +72,4 @@ enum class Incapacitation {
     ASLEEP,
     CONFUSION,
     PARALYZE,
-    NONE
 }

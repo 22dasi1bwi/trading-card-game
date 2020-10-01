@@ -39,8 +39,7 @@ internal data class Ability(val name: String,
 internal class AbilityCost(val requiredEnergy: List<EnergyCard>)
 internal data class AbilityDamage(private val baseDamage: Int) {
 
-    val total: Int
-        get() = this.applyDamageModifiers()
+    val total: Int get() = this.applyDamageModifiers()
 
     private fun applyDamageModifiers(): Int {
         return baseDamage * WeaknessModifier - ResistanceModifier
