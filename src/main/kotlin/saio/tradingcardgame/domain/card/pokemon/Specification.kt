@@ -1,4 +1,4 @@
-package saio.tradingcardgame.domain.card
+package saio.tradingcardgame.domain.card.pokemon
 
 internal enum class Specification {
     NONE,

@@ -1,9 +1,9 @@
 package saio.tradingcardgame.domain.pokemon
 
 import saio.tradingcardgame.domain.ability.Ability
-import saio.tradingcardgame.domain.card.Health
-import saio.tradingcardgame.domain.card.PokemonCard
-import saio.tradingcardgame.domain.card.Specification
+import saio.tradingcardgame.domain.card.pokemon.Health
+import saio.tradingcardgame.domain.card.pokemon.PokemonCard
+import saio.tradingcardgame.domain.card.pokemon.Specification
 
 internal class Squirtle : PokemonCard() {
 

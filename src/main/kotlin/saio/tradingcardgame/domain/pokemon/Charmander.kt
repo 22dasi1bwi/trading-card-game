@@ -4,11 +4,11 @@ import saio.tradingcardgame.domain.ability.Ability
 import saio.tradingcardgame.domain.ability.AbilityCost
 import saio.tradingcardgame.domain.ability.AbilityDamage
 import saio.tradingcardgame.domain.ability.AbilityEffect
-import saio.tradingcardgame.domain.card.*
-import saio.tradingcardgame.domain.card.EnergyCard
-import saio.tradingcardgame.domain.card.Health
-import saio.tradingcardgame.domain.card.PokemonCard
-import saio.tradingcardgame.domain.card.Specification
+import saio.tradingcardgame.domain.card.energy.EnergyCard
+import saio.tradingcardgame.domain.card.pokemon.Health
+import saio.tradingcardgame.domain.card.pokemon.PokemonCard
+import saio.tradingcardgame.domain.card.pokemon.Specification
+import saio.tradingcardgame.domain.card.energy.EnergyType
 
 internal class Charmander : PokemonCard() {
 

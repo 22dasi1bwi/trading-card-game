@@ -1,6 +1,7 @@
-package saio.tradingcardgame.domain.card
+package saio.tradingcardgame.domain.card.pokemon
 
 import saio.tradingcardgame.domain.ability.Ability
+import saio.tradingcardgame.domain.card.energy.EnergyCard
 
 internal abstract class PokemonCard {
 

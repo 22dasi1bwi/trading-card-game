@@ -1,4 +1,4 @@
-package domain.card
+package saio.tradingcardgame.domain.card
 
 abstract class Card {
 

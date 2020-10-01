@@ -1,7 +1,7 @@
 package saio.tradingcardgame.domain.ability
 
-import saio.tradingcardgame.domain.card.EnergyCard
-import saio.tradingcardgame.domain.card.EnergyType
+import saio.tradingcardgame.domain.card.energy.EnergyCard
+import saio.tradingcardgame.domain.card.energy.EnergyType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

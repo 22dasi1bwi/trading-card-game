@@ -2,6 +2,7 @@ package saio.tradingcardgame.domain.ability
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import saio.tradingcardgame.domain.ability.AbilityDamage
 import saio.tradingcardgame.domain.combat.CombatContext
 import saio.tradingcardgame.domain.pokemon.Bulbasaur
 import saio.tradingcardgame.domain.pokemon.Charmander

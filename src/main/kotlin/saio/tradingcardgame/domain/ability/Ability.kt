@@ -1,7 +1,6 @@
 package saio.tradingcardgame.domain.ability
 
-import saio.tradingcardgame.domain.card.EnergyCard
-import saio.tradingcardgame.globalCombatContext
+import saio.tradingcardgame.domain.card.energy.EnergyCard
 
 internal data class Ability(val name: String,
                             val cost: AbilityCost,
@@ -49,31 +48,6 @@ internal data class AbilityDamage(private val baseDamage: Int) {
 
     private operator fun Int.times(modifier: DamageModifier) = this * modifier.value
     private operator fun Int.minus(modifier: DamageModifier) = this - modifier.value
-}
-
-internal interface DamageModifier {
-    val value: Int
-    fun isApplicable(): Boolean
-}
-
-internal object ResistanceModifier : DamageModifier {
-
-    override val value: Int
-        get() = if (isApplicable()) 30 else 0
-
-    override fun isApplicable(): Boolean {
-        return globalCombatContext.initiator.specialization == globalCombatContext.receiver.resistance
-    }
-}
-
-internal object WeaknessModifier : DamageModifier {
-
-    override val value: Int
-        get() = if (isApplicable()) 2 else 1
-
-    override fun isApplicable(): Boolean {
-        return globalCombatContext.initiator.specialization == globalCombatContext.receiver.weakness
-    }
 }
 
 internal data class AbilityEffect(val description: String = "")
