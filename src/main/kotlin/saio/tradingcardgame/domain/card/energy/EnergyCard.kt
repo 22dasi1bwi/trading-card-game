@@ -24,5 +24,3 @@ internal enum class EnergyType {
         }
     }
 }
-
-

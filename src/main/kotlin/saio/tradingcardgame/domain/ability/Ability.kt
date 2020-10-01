@@ -20,10 +20,10 @@ internal data class Ability(val name: String,
 
         private val objections = requiredEnergy.associateWith { ActivationObjection.MISSING_REQUIRED_ENERGY }.toMutableMap()
 
-        fun merge(energyCard: EnergyCard) {
+        fun merge(attachedEnergy: EnergyCard) {
             objections
                     .filter { it.value != ActivationObjection.NONE }.keys
-                    .firstOrNull { energyCard.type.matches(it.type) }
+                    .firstOrNull { requiredEnergy -> attachedEnergy.type.matches(requiredEnergy.type) }
                     ?.let { objections[it] = ActivationObjection.NONE }
         }
 
