@@ -21,7 +21,7 @@ internal class Charmander : PokemonCard() {
     )
 
     override val totalHealth: Health
-        get() = Health(initializeTotalHealth(5))
+        get() = Health(50)
 
     override val specialization: Specification
         get() = Specification.FIRE

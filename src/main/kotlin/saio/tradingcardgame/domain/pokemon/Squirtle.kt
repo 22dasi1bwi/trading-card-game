@@ -9,7 +9,7 @@ import saio.tradingcardgame.domain.card.pokemon.Stage
 internal class Squirtle : PokemonCard() {
 
     override val totalHealth: Health
-        get() = Health(initializeTotalHealth(4))
+        get() = Health(40)
     override val specialization: Specification
         get() = Specification.WATER
     override val weakness: Specification?

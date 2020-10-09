@@ -1,30 +1,37 @@
 package saio.tradingcardgame.domain.card.pokemon
 
-import java.lang.IllegalStateException
 
-internal data class Health(private val healthTokens: MutableList<Token>) {
+internal data class Health(private val totalRaw: Int) {
 
-    val rawTotal: Int get() = FreshToken.value * healthTokens.size
+    var remaining: MutableList<Token>
 
-    val rawRemainingHealth: Int get() = healthTokens.filterIsInstance<FreshToken>().size * FreshToken.value
+    var remainingRaw: Int
 
-    fun subtract(receivedDamage: Int) {
-        require(receivedDamage % FreshToken.value == 0)
-        {
-            "Receiving damage modulo 10 must be 0, but received damage was $receivedDamage."
-        }
+    init {
+        require(totalRaw >= 10) { "Health total must be at least ${VitalToken.value}, but was $totalRaw." }
 
-        val numberOfTokens = receivedDamage / FreshToken.value
-
-        deplete(numberOfTokens)
+        remaining = VitalToken.from(totalRaw).toMutableList()
+        remainingRaw = remaining.size * VitalToken.value
     }
 
-    private fun deplete(numberOfTokens: Int) {
-        repeat(numberOfTokens) {
-            val freshToken = healthTokens.find { it is FreshToken } ?: throw IllegalStateException("ups")
-            val depletedToken = freshToken.switch()
-            healthTokens.remove(freshToken)
-            healthTokens.add(depletedToken)
+    fun subtract(damageTaken: Int) {
+//        require(damageTaken < 0) { "Damage taken must be lower than zero, but was $damageTaken." }
+
+        val depletedTokens = DepletedToken.from(damageTaken)
+        remainingRaw -= damageTaken
+        remaining.switchInPlace(depletedTokens.size) { it.switch() }
+    }
+
+    private inline fun <T> MutableList<T>.switchInPlace(amountOfSwitches: Int = this.size, mutator: (T) -> T) {
+        val iterator = this.listIterator()
+        var counter = 0
+        while (iterator.hasNext() && counter < amountOfSwitches) {
+            val oldValue = iterator.next()
+            val newValue = mutator(oldValue)
+            if (newValue !== oldValue) {
+                iterator.set(newValue)
+                counter++
+            }
         }
     }
 }
@@ -32,9 +39,15 @@ internal data class Health(private val healthTokens: MutableList<Token>) {
 internal sealed class Token {
     abstract val value: Int
     abstract fun switch(): Token
+
+    fun from(input: Int): List<Token> {
+        require(input.rem(VitalToken.value) == 0) { "Input must be a multiple of ${VitalToken.value} but was $input." }
+        val numberOfTokens = input / VitalToken.value
+        return (1..numberOfTokens).map { this }
+    }
 }
 
-internal object FreshToken : Token() {
+internal object VitalToken : Token() {
 
     override val value: Int
         get() = 10
@@ -49,7 +62,7 @@ internal object DepletedToken : Token() {
         get() = 0
 
     override fun switch(): Token {
-        return FreshToken
+        return VitalToken
     }
 }
 

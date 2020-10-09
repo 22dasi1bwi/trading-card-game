@@ -22,7 +22,7 @@ internal class Bulbasaur : PokemonCard() {
 
     //TODO don't like this
     override val totalHealth: Health
-        get() = Health(initializeTotalHealth(4))
+        get() = Health(40)
 
     override val specialization: Specification
         get() = Specification.NATURE

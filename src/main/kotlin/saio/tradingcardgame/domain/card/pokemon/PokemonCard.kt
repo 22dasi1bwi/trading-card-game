@@ -39,7 +39,7 @@ internal abstract class PokemonCard {
     }
 
     protected fun initializeTotalHealth(numberOfTokens: Int): MutableList<Token> {
-        return (1..numberOfTokens).map { FreshToken }.toMutableList()
+        return (1..numberOfTokens).map { VitalToken }.toMutableList()
     }
 
     private fun isIncapacitated() =
