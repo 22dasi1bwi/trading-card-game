@@ -9,6 +9,7 @@ import saio.tradingcardgame.domain.card.pokemon.Health
 import saio.tradingcardgame.domain.card.pokemon.PokemonCard
 import saio.tradingcardgame.domain.card.pokemon.Specification
 import saio.tradingcardgame.domain.card.energy.EnergyType
+import saio.tradingcardgame.domain.card.pokemon.Stage
 
 internal class Charmander : PokemonCard() {
 
@@ -25,14 +26,17 @@ internal class Charmander : PokemonCard() {
     override val specialization: Specification
         get() = Specification.FIRE
 
-    override val weakness: Specification
+    override val weakness: Specification?
         get() = Specification.WATER
 
-    override val resistance: Specification
-        get() = Specification.NONE
+    override val resistance: Specification?
+        get() = null
 
     override val abilities: List<Ability>
         get() = listOf(scratch) // TODO implement actual abilities
+
+    override val stage: Stage
+        get() = Stage.BASIC
 
     override fun performSpecificAbility(ability: Ability) {
     }

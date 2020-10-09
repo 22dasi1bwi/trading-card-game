@@ -13,11 +13,13 @@ internal abstract class PokemonCard {
 
     abstract val specialization: Specification
 
-    abstract val weakness: Specification
+    abstract val weakness: Specification?
 
-    abstract val resistance: Specification
+    abstract val resistance: Specification?
 
     abstract val abilities: List<Ability>
+
+    abstract val stage: Stage
 
     abstract fun performSpecificAbility(ability: Ability)
 
@@ -36,12 +38,8 @@ internal abstract class PokemonCard {
         this.attachedEnergyCards.add(energyCard)
     }
 
-    protected fun initializeTotalHealth(numberOfTokens: Int): List<Token> {
-        var tokens = mutableListOf<Token>()
-        repeat(numberOfTokens) {
-            tokens.add(Token.new())
-        }
-        return tokens
+    protected fun initializeTotalHealth(numberOfTokens: Int): MutableList<Token> {
+        return (1..numberOfTokens).map { FreshToken }.toMutableList()
     }
 
     private fun isIncapacitated() =
@@ -56,20 +54,14 @@ internal abstract class PokemonCard {
     private fun isAsleep() = this.incapacitationState == Incapacitation.ASLEEP
 }
 
-internal data class Health(private val healthTokens: List<Token>)
-
-internal class Token private constructor(val value: Int) {
-
-    companion object {
-
-        private const val singleTokenValue = 10
-
-        fun new() = Token(singleTokenValue)
-    }
-}
-
-enum class Incapacitation {
+internal enum class Incapacitation {
     ASLEEP,
     CONFUSION,
     PARALYZE,
+}
+
+internal enum class Stage(val level: Int) {
+    BASIC(1),
+    INTERMEDIATE(2),
+    ADVANCED(3);
 }

@@ -6,17 +6,17 @@ import kotlin.random.Random.Default.nextInt
 internal object CoinFlip {
 
     private val random = Random(nextInt())
-
-    fun random(times: Int): CoinFlipOutcome {
+    //TODO: not sure yet if like that.
+    fun random(times: Int): CoinFlipResult {
         val headHits = (1..times)
                 .filter { random.nextBoolean() }
+                .map { }
                 .size
 
         return Head(headHits)
     }
 
-    internal abstract class CoinFlipOutcome(val hits: Int)
-    internal class Head(hits: Int) : CoinFlipOutcome(hits)
-    // TODO: Do we need Tail? We're not using it at the moment.
-    internal class Tail(hits: Int) : CoinFlipOutcome(hits)
+    internal abstract class CoinFlipResult(val hits: Int)
+    internal class Head(hits: Int) : CoinFlipResult(hits)
+    internal class Tail(hits: Int) : CoinFlipResult(hits)
 }

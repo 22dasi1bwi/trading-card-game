@@ -9,6 +9,7 @@ import saio.tradingcardgame.domain.card.energy.EnergyType
 import saio.tradingcardgame.domain.card.pokemon.Health
 import saio.tradingcardgame.domain.card.pokemon.PokemonCard
 import saio.tradingcardgame.domain.card.pokemon.Specification
+import saio.tradingcardgame.domain.card.pokemon.Stage
 
 internal class Bulbasaur : PokemonCard() {
 
@@ -19,20 +20,24 @@ internal class Bulbasaur : PokemonCard() {
         effect = AbilityEffect("After attacking Bulbasaur heals itself for one Token.")
     )
 
+    //TODO don't like this
     override val totalHealth: Health
         get() = Health(initializeTotalHealth(4))
 
     override val specialization: Specification
         get() = Specification.NATURE
 
-    override val weakness: Specification
+    override val weakness: Specification?
         get() = Specification.FIRE
 
-    override val resistance: Specification
-        get() = Specification.NONE
+    override val resistance: Specification?
+        get() = null
 
     override val abilities: List<Ability>
         get() = listOf(leech)
+
+    override val stage: Stage
+        get() = Stage.BASIC
 
     override fun performSpecificAbility(ability: Ability) {
     }
